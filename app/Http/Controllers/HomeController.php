@@ -17,4 +17,10 @@ class HomeController extends Controller
     {
         return view('about');
     }
+
+    public function dashboard()
+    {
+        // Langsung lempar ke halaman katalog
+        return redirect()->route('tanaman.index');
+    }
 }

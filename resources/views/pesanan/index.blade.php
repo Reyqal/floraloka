@@ -40,12 +40,6 @@
         </div>
     @endif
 
-    <div class="p-3 border border-zinc-200 border-b-0 rounded-t-2xl bg-zinc-50 flex justify-end">
-        <a href="{{ route('tanaman.index') }}" class="bg-zinc-800 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-zinc-700 transition flex items-center gap-2">
-            <i class="ph ph-arrow-left"></i> Kembali
-        </a>
-    </div>
-
     <div class="bg-white border border-zinc-200 shadow-sm rounded-b-2xl overflow-hidden mb-10">
         <div class="overflow-x-auto">
             <table class="min-w-full text-sm text-left text-zinc-600">

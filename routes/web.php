@@ -6,6 +6,7 @@ use App\Http\Controllers\TanamanController;
 use App\Http\Controllers\ProfileController; 
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', [TanamanController::class, 'index'])->name('tanaman.index');
 Route::get('/tanaman/detail/{id}', [TanamanController::class, 'show'])->name('tanaman.show');
@@ -20,14 +21,12 @@ Route::get('/katalog', [TanamanController::class, 'index'])->name('tanaman.index
 Route::get('/tentang-kami', [HomeController::class, 'tentangKami'])->name('tentang-kami');
 
 Route::middleware('auth')->group(function () {
-    
     // Rute Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     
     // Redirect otomatis ke halaman depan jika mengakses 
-    Route::get('/dashboard', function() {
-        return redirect()->route('tanaman.index'); 
-    })->name('dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
     // Rute CRUD Tanaman (Hanya bisa diproses jika lolos Gate di dalam Controllernya)
     Route::get('/tanaman/create/baru', [TanamanController::class, 'create'])->name('tanaman.create');
