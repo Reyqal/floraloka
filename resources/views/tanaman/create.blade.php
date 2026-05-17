@@ -75,7 +75,7 @@
                 <label class="font-bold text-sm text-zinc-800">Deskripsi Tanaman</label>
                 <textarea name="deskripsi" rows="4" 
                           class="px-4 py-3 rounded-xl border border-zinc-200 bg-zinc-50/50 outline-none focus:border-green-500 focus:bg-white focus:ring-4 focus:ring-green-50 transition text-sm font-medium leading-relaxed placeholder:text-zinc-400"
-                          placeholder="Jelaskan karakteristik tanaman, cara perawatan singkat, atau ukuran pot...规格">{{ old('deskripsi') }}</textarea>
+                          placeholder="Jelaskan karakteristik tanaman, cara perawatan singkat, atau ukuran pot...">{{ old('deskripsi') }}</textarea>
                 @error('deskripsi') <div class="text-red-500 text-xs font-semibold mt-0.5"><i class="ph-fill ph-warning-circle"></i> {{ $message }}</div> @enderror
             </div>
 
