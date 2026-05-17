@@ -10,7 +10,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Buat Akun Master Admin (Hanya jika belum ada)
+        // 1. Buat Akun Master Admin
         User::updateOrCreate(
             ['email' => 'admin@floraloka.com'],
             [
@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // 2. Buat Akun Customer Dummy untuk Percobaan
+        // 2. Buat Akun costumer untuk Percobaan
         User::updateOrCreate(
             ['email' => 'rekal@gmail.com'],
             [
@@ -34,9 +34,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $this->command->info('✅ Seeder Akun Pengguna berhasil dijalankan.');
-
-        // 3. Panggil seeder lainnya secara berurutan
+        // 3. Memanggil seeder lainnya secara berurutan
         $this->call([
             KategoriSeeder::class,
             TanamanSeeder::class,

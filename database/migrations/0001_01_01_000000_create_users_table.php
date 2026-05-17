@@ -18,11 +18,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['admin', 'customer'])->default('customer');
-            
-            // Tambahkan dua baris ini langsung di sini:
             $table->text('alamat')->nullable(); 
             $table->string('no_hp')->nullable();
-            
             $table->rememberToken();
             $table->timestamps();
         });

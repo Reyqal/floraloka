@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Pesanan extends Model
 {
-    protected $fillable = ['user_id', 'total_harga', 'status', 'bukti_bayar']; // [cite: 613-622]
+    protected $fillable = ['user_id', 'total_harga', 'status', 'bukti_bayar'];
 
     public function user(): BelongsTo
     {

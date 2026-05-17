@@ -11,7 +11,7 @@
 </head>
 <body class="bg-zinc-100 flex items-center justify-center min-h-screen">
     <div class="space-y-6 p-6 max-w-[30rem] w-full">
-        <div class="flex flex-col w-full gap-4 border border-zinc-300 bg-white p-6 shadow">
+        <div class="flex flex-col w-full gap-4 border border-zinc-300 bg-white p-6 shadow rounded-xl">
             <div class="space-y-2 text-center">
                 <h1 class="font-semibold text-2xl">{{ $section_title }}</h1>
                 <p class="text-zinc-600 text-sm">{{ $section_description }}</p>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tanaman;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate; // Wajib di-import [cite: 2019]
+use Illuminate\Support\Facades\Gate; 
 
 class TanamanController extends Controller
 {
@@ -19,25 +19,23 @@ class TanamanController extends Controller
     // Menampilkan form tambah (Hanya Admin)
     public function create()
     {
-        if (! Gate::allows('admin-access')) { abort(401); } // [cite: 2047]
+        if (! Gate::allows('admin-access')) { abort(401); } 
         $kategoris = Kategori::all();
         return view('tanaman.create', compact('kategoris'));
     }
 
     // Menyimpan data tanaman baru (Hanya Admin)
-// Menyimpan data tanaman baru (Hanya Admin)
     public function store(Request $request)
     {
         if (! Gate::allows('admin-access')) { abort(401); }
 
-        // 1. Tambahkan rule 'gambar' ke dalam validasi
         $validated = $request->validate([
             'nama_tanaman' => 'required',
             'kategori_id'  => 'required',
             'harga'        => 'required|numeric',
             'stok'         => 'required|numeric',
             'deskripsi'    => 'required',
-            'gambar'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048', // 👈 Tambahkan ini
+            'gambar'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         // 2. Logika pemindahan file gambar dari form ke folder storage publik
@@ -65,13 +63,12 @@ class TanamanController extends Controller
     // Menampilkan form edit (Hanya Admin)
     public function edit(string $id)
     {
-        if (! Gate::allows('admin-access')) { abort(401); } // [cite: 2060]
+        if (! Gate::allows('admin-access')) { abort(401); }
         $tanaman = Tanaman::findOrFail($id);
         $kategoris = Kategori::all();
         return view('tanaman.edit', compact('tanaman', 'kategoris'));
     }
 
-    // Memperbarui data tanaman (Hanya Admin)
    public function update(Request $request, string $id)
     {
         if (! Gate::allows('admin-access')) { abort(401); }
@@ -105,10 +102,10 @@ class TanamanController extends Controller
     // Menghapus data tanaman (Hanya Admin)
     public function destroy(string $id)
     {
-        if (! Gate::allows('admin-access')) { abort(401); } // [cite: 2089]
+        if (! Gate::allows('admin-access')) { abort(401); } 
         $tanaman = Tanaman::findOrFail($id);
-        $tanaman->delete(); // [cite: 714]
+        $tanaman->delete();
 
-        return redirect()->route('tanaman.index')->with('success', 'Data Tanaman berhasil dihapus!'); // [cite: 715]
+        return redirect()->route('tanaman.index')->with('success', 'Data Tanaman berhasil dihapus!');
     }
 }

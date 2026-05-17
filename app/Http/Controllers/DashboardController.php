@@ -24,4 +24,24 @@ class DashboardController extends Controller
 
         return view('dashboard.admin', compact('totalPendapatan', 'pesananPending', 'totalTanaman', 'pesananTerbaru'));
     }
+        
+    public function beranda()
+    {
+        return view('welcome');
+    }
+
+    // Mengembalikan view halaman tentang kami (about)
+    public function tentangKami()
+    {
+        return view('about');
+    }
+
+    public function dashboard()
+        {
+            if (auth()->user()->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+            
+            return redirect()->route('tanaman.index');
+        }
 }

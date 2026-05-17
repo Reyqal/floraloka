@@ -12,7 +12,7 @@ class AuthController extends Controller
     // Menampilkan form register
     public function register()
     {
-        return view('auth.register'); // [cite: 1660]
+        return view('auth.register');
     }
 
     // Memproses data register
@@ -22,49 +22,55 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
-            'confirm_password' => 'required|same:password', // [cite: 1673-1676]
+            'confirm_password' => 'required|same:password', 
         ]);
 
         User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password']), // Enkripsi password
-            'role' => 'customer' // Default role saat register baru
+            'password' => Hash::make($validated['password']), 
+            'role' => 'customer'
         ]);
 
-        return redirect()->route('auth.login')->with('success', 'Registrasi berhasil, silakan login!'); // [cite: 1682]
+        return redirect()->route('auth.login')->with('success', 'Registrasi berhasil, silakan login!');
     }
 
     // Menampilkan form login
     public function login()
     {
-        return view('auth.login'); // [cite: 1669]
+        return view('auth.login');
     }
 
     // Memproses login
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]); // [cite: 1684-1687]
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-        if (Auth::attempt($credentials)) { // [cite: 1688]
-            $request->session()->regenerate(); // [cite: 1689]
-            return redirect()->intended('dashboard'); // [cite: 1690]
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+
+            // Jika Customer berhasil masuk, langsung ke halaman Katalog Produk
+            return redirect()->route('tanaman.index');
         }
 
         return back()->withErrors([
-            'email' => 'Email atau password yang Anda masukkan salah.', // [cite: 1692]
-        ])->onlyInput('email'); // [cite: 1692]
+            'email' => 'Email atau password yang Anda masukkan salah.',
+        ])->onlyInput('email');
     }
 
     // Memproses logout
     public function logout(Request $request)
     {
-        Auth::logout(); // [cite: 1693]
-        $request->session()->invalidate(); // [cite: 1694]
-        $request->session()->regenerateToken(); // [cite: 1695]
-        return redirect()->route('auth.login'); // [cite: 1696]
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('auth.login');
     }
 }

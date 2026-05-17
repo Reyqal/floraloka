@@ -27,7 +27,7 @@ class TanamanSeeder extends Seeder
                 'kategori_id' => 2,
                 'harga' => 85000,
                 'stok' => 20,
-                'gambar' => 'https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                'gambar' => 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/MTA-10556201/jati_landscape_tanaman_kaktus_belimbing_-_kaktus_koboi_koboy_full01_evbyho9p.jpeg',
                 'deskripsi' => 'Kaktus minimalis yang tumbuh tegak lurus. Sangat mudah dirawat dan hemat air.',
             ]
         );

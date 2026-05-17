@@ -7,7 +7,7 @@
             </div>
         @endif
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start mt-4">
             
             <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 text-center">
                 <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
